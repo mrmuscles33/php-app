@@ -161,7 +161,7 @@ class Db
      * Return row number in dataset
      * @param string $query
      * @param Collection $params
-     * @return integer
+     * @return int
      */
     public function countRow(string $query, Collection $params): int
     {

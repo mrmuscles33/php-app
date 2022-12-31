@@ -100,10 +100,10 @@ class Collection implements JsonSerializable
 
     /**
      * Return if collection contains value
-     * @param object value
+     * @param mixed value
      * @return boolean
      */
-    public function contains($value): bool
+    public function contains(mixed $value): bool
     {
         $givenType = gettype($value) == 'object' ? get_class($value) : gettype($value);
         if ($givenType != $this->type && $this->type != '') {
@@ -151,7 +151,7 @@ class Collection implements JsonSerializable
 
     /**
      * Return number of values
-     * @return integer
+     * @return int
      */
     public function size(): int
     {

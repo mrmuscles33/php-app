@@ -10,7 +10,7 @@
 function autoLoad(string $dir, string $class): void
 {
     $root = realpath($_SERVER["DOCUMENT_ROOT"]);
-    $fileName = $root . '/Framocaer/' . $dir . '/' . $class . '.php';
+    $fileName = $root . '/php-app/' . $dir . '/' . $class . '.php';
     if (file_exists($fileName)) {
         include_once($fileName);
     }

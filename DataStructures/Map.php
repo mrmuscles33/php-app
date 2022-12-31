@@ -30,7 +30,7 @@ class Map implements JsonSerializable
      * Return string for echo or printf method
      * @return string
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         return json_encode($this->datas);
     }
@@ -47,10 +47,10 @@ class Map implements JsonSerializable
     /**
      * Put or update value with key
      * @param string $key
-     * @param object value
+     * @param mixed $value
      * @return void
      */
-    public function put(string $key, $value): void
+    public function put(string $key, mixed $value): void
     {
         if (!is_string($key)) {
             throw new ArgumentFail("string", gettype($key));
@@ -91,14 +91,12 @@ class Map implements JsonSerializable
                 throw new ArgumentFail($this->type, $map->type);
             }
             $this->datas = array_merge($this->datas, $map->getDatas());
-        }
-        elseif (is_array($map)) {
+        } elseif (is_array($map)) {
             foreach ($map as $key => $value) {
                 $this->put($key, $value);
             }
-        }
-        else {
-            $givenType = gettype($map) == 'object' ? get_class((object)$map) : gettype($map);
+        } else {
+            $givenType = gettype($map) == 'object' ? get_class((object) $map) : gettype($map);
             throw new ArgumentFail('Map|array', $givenType);
         }
     }
@@ -111,7 +109,7 @@ class Map implements JsonSerializable
     public function containsKey(string $key): bool
     {
         if (!is_string($key)) {
-            $givenType = gettype($key) == 'object' ? get_class((object)$key) : gettype($key);
+            $givenType = gettype($key) == 'object' ? get_class((object) $key) : gettype($key);
             throw new ArgumentFail('string', $givenType);
         }
         return array_key_exists($key, $this->datas);
@@ -125,7 +123,7 @@ class Map implements JsonSerializable
     public function get(string $key)
     {
         if (!is_string($key)) {
-            $givenType = gettype($key) == 'object' ? get_class((object)$key) : gettype($key);
+            $givenType = gettype($key) == 'object' ? get_class((object) $key) : gettype($key);
             throw new ArgumentFail('string', $givenType);
         }
         if ($this->containsKey($key)) {
@@ -138,7 +136,7 @@ class Map implements JsonSerializable
      * Get all keys & values
      * @return array
      */
-    private function getDatas(): array
+    public function getDatas(): array
     {
         return $this->datas;
     }
@@ -154,7 +152,7 @@ class Map implements JsonSerializable
 
     /**
      * Return number of values
-     * @return integer
+     * @return int
      */
     public function size(): int
     {
@@ -200,7 +198,7 @@ class Map implements JsonSerializable
     public function remove(string $key): void
     {
         if (!is_string($key)) {
-            $givenType = gettype($key) == 'object' ? get_class((object)$key) : gettype($key);
+            $givenType = gettype($key) == 'object' ? get_class((object) $key) : gettype($key);
             throw new ArgumentFail('string', $givenType);
         }
         unset($this->datas[$key]);
