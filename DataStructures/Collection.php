@@ -49,7 +49,7 @@ class Collection implements JsonSerializable
      * @param object value
      * @return void
      */
-    public function put($value) : void
+    public function put($value): void
     {
         $givenType = gettype($value) == 'object' ? get_class($value) : gettype($value);
         if (!is_null($value) && $this->type != '' && $givenType != $this->type) {
@@ -63,7 +63,7 @@ class Collection implements JsonSerializable
      * @param object value
      * @return void
      */
-    public function putIfAbsent($value) : void
+    public function putIfAbsent($value): void
     {
         $givenType = gettype($value) == 'object' ? get_class($value) : gettype($value);
         if (!is_null($value) && $this->type != '' && $givenType != $this->type) {
@@ -86,14 +86,12 @@ class Collection implements JsonSerializable
                 throw new ArgumentFail($this->type, $collection->type);
             }
             $this->datas = array_merge($this->datas, $collection->getDatas());
-        }
-        elseif (is_array($collection)) {
+        } elseif (is_array($collection)) {
             foreach ($collection as $value) {
                 $this->put($value);
             }
-        }
-        else {
-            $givenType = gettype($collection) == 'object' ? get_class((object)$collection) : gettype($collection);
+        } else {
+            $givenType = gettype($collection) == 'object' ? get_class((object) $collection) : gettype($collection);
             throw new ArgumentFail('Collection|array', $givenType);
         }
     }
@@ -120,13 +118,12 @@ class Collection implements JsonSerializable
     public function get(int $idx)
     {
         if (!is_integer($idx)) {
-            $givenType = gettype($idx) == 'object' ? get_class((object)$idx) : gettype($idx);
+            $givenType = gettype($idx) == 'object' ? get_class((object) $idx) : gettype($idx);
             throw new ArgumentFail('int', $givenType);
         }
         if ($idx < $this->size()) {
             return $this->datas[$idx];
-        }
-        else {
+        } else {
             throw new RangeFail($this->size(), $idx);
         }
     }
@@ -144,7 +141,7 @@ class Collection implements JsonSerializable
      * Clear all values
      * @return void
      */
-    public function clear() : void
+    public function clear(): void
     {
         $this->datas = [];
     }
@@ -172,17 +169,16 @@ class Collection implements JsonSerializable
      * @param int $idx
      * @return void
      */
-    public function remove(int $idx) : void
+    public function remove(int $idx): void
     {
         if (!is_integer($idx)) {
-            $givenType = gettype($idx) == 'object' ? get_class((object)$idx) : gettype($idx);
+            $givenType = gettype($idx) == 'object' ? get_class((object) $idx) : gettype($idx);
             throw new ArgumentFail('int', $givenType);
         }
         if ($idx < $this->size()) {
             unset($this->datas[$idx]);
             $this->datas = array_values($this->datas);
-        }
-        else {
+        } else {
             throw new RangeFail($this->size(), $idx);
         }
     }
@@ -198,7 +194,7 @@ class Collection implements JsonSerializable
         $list = new Collection('');
         $arr = [];
         foreach ($values as $value) {
-            $arr[] = (array)$value;
+            $arr[] = (array) $value;
         }
         $list->putAll(array_merge(...$arr));
         return $list;

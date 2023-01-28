@@ -10,7 +10,7 @@ class ServletMethodFail extends Exception
         parent::__construct($this->message, ServletMethodFail::CODE);
     }
 
-    public function __toString() : string
+    public function __toString(): string
     {
         return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
     }

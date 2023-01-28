@@ -8,7 +8,7 @@ include_once($root . '/php-app/autoLoad.php');
 DbManager::register('base1', new Db("root", "root", "localhost", "dofus"));
 DbManager::setMainConnection(DbManager::getConnection('base1'));
 
-if(!isset($_POST) || empty($_POST)) {
+if (!isset($_POST) || empty($_POST)) {
     $_POST = json_decode(file_get_contents("php://input"), true);
 }
 

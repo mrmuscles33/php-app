@@ -10,7 +10,7 @@ class RangeFail extends Exception
         parent::__construct($this->message, RangeFail::CODE);
     }
 
-    public function __toString() : string
+    public function __toString(): string
     {
         return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
     }

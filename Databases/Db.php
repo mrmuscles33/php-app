@@ -48,12 +48,11 @@ class Db
             try {
                 $this->cnx = new PDO(
                     'mysql:host=' . $this->url . ';dbname=' . $this->base . ';charset=utf8',
-                    $this->user,
-                    $this->password,
-                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-                    );
-            }
-            catch (Exception $e) {
+                        $this->user,
+                        $this->password,
+                    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+                );
+            } catch (Exception $e) {
                 die('Db.connect : ' . $e->getMessage());
             }
         }
@@ -98,8 +97,7 @@ class Db
                 $obj = new $type();
                 $obj->fromMap($map);
                 $list->put($obj);
-            }
-            else {
+            } else {
                 $list->put($map);
             }
         }

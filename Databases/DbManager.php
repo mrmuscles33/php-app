@@ -13,7 +13,7 @@ class DbManager
      */
     public static function getConnection(string $id): Db
     {
-        $db = self::$allDb->containsKey($id) ?self::$allDb->get($id) : self::getMainConnection();
+        $db = self::$allDb->containsKey($id) ? self::$allDb->get($id) : self::getMainConnection();
         $db->connect();
         return $db;
     }
@@ -25,7 +25,7 @@ class DbManager
      * @param Db $db
      * @return void
      */
-    public static function register(string $id, Db $db) : void
+    public static function register(string $id, Db $db): void
     {
         if (self::$allDb == null) {
             self::$allDb = new Map('Db');
@@ -39,7 +39,7 @@ class DbManager
      * @param Db $db
      * @return void
      */
-    public static function setMainConnection(Db $db) : void
+    public static function setMainConnection(Db $db): void
     {
         self::$mainDb = $db;
     }

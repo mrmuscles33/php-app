@@ -182,7 +182,7 @@ class Column implements JsonSerializable
 	 */
 	public function jsonSerialize(): array
 	{
-		return (array)get_object_vars($this);
+		return (array) get_object_vars($this);
 	}
 }
 

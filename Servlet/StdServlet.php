@@ -6,7 +6,6 @@ class StdServlet implements JsonSerializable
     private string $error;
     private string $succes;
     private string $warning;
-    private string $caller;
 
     public function __construct()
     {
@@ -113,23 +112,5 @@ class StdServlet implements JsonSerializable
         return (array) get_object_vars($this);
     }
 
-    /**
-     * Return screen or popup caller
-     * @return string
-     */
-    public function getCaller(): string
-    {
-        return $this->caller;
-    }
-
-    /**
-     * Set screen or popup caller
-     * @param string $caller 
-     * @return void
-     */
-    public function setCaller(string $caller): void
-    {
-        $this->caller = $caller;
-    }
 }
 ?>
