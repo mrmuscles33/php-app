@@ -10,9 +10,8 @@ class ServletManager
         $method = isset($_POST['method']) ? $_POST['method'] : $_GET['method'];
 
         if (isset($servletName) && isset($method)) {
-            $servletUrl = ServletManager::getServlet($servletName);
-            $root = realpath($_SERVER["DOCUMENT_ROOT"]);
-            $fileName = $root . '/' . $servletUrl . '.php';
+            $servletUrl = self::getServlet($servletName);
+            $fileName = realpath($_SERVER["DOCUMENT_ROOT"]) . '/' . $servletUrl . '.php';
             if (isset($servletUrl) && file_exists($fileName)) {
                 self::includeServlet($fileName, $servletName, $method);
             } else {
@@ -31,7 +30,7 @@ class ServletManager
             && is_subclass_of($servlet, 'StdServlet')
         ) {
             try {
-                $servlet->$method(ServletManager::getParams());
+                $servlet->$method(self::getParams());
             } catch (Throwable $th) {
                 $servlet->setError($th->__toString());
             }

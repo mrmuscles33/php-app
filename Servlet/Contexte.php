@@ -4,6 +4,7 @@ class Contexte
 {
 
     private static Map $servlets;
+    private static Map $apis;
     private static Map $datas;
 
     public static function init(): void
@@ -12,6 +13,7 @@ class Contexte
             session_start();
         }
         self::$servlets = self::loadServlets();
+        self::$apis = self::loadAPIs();
         self::$datas = self::loadDatas();
     }
 
@@ -49,6 +51,42 @@ class Contexte
     {
         self::$servlets->put($name, $url);
         $_SESSION['servlets'] = serialize(self::$servlets->getDatas());
+    }
+
+    /**
+     * Load APIs in context from sessions variables
+     *
+     * @return Map
+     */
+    private static function loadAPIs(): Map
+    {
+        $map = new Map('string');
+        if (isset($_SESSION['apis'])) {
+            $arrApis = $_SESSION['apis'];
+            $map->putAll(unserialize($arrApis));
+        }
+        return $map;
+    }
+
+    /**
+     * Get APIs in context
+     * @return Map
+     */
+    public static function getAPIs(): Map
+    {
+        return self::$apis;
+    }
+
+    /**
+     * Save an API in context
+     * @param string $name
+     * @param string $url
+     * @return void
+     */
+    public static function setAPI(string $name, string $url): void
+    {
+        self::$apis->put($name, $url);
+        $_SESSION['apis'] = serialize(self::$apis->getDatas());
     }
 
     /**

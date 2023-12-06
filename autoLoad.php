@@ -60,9 +60,21 @@ function autoLoadServlet(string $class): void
     autoLoad('Servlet', $class);
 }
 
+/**
+ * Automatically load classes in Api folder
+ *
+ * @param string $class
+ * @return void
+ */
+function autoLoadApi(string $class): void
+{
+    autoLoad('Api', $class);
+}
+
 spl_autoload_register('autoLoadDatabases');
 spl_autoload_register('autoLoadDataStructures');
 spl_autoload_register('autoLoadExceptions');
 spl_autoload_register('autoLoadServlet');
+spl_autoload_register('autoLoadApi');
 
 ?>

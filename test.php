@@ -1,7 +1,8 @@
 <?php
 
-header('Access-Control-Allow-Headers: *');
 header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: *');
+header('Access-Control-Max-Age:3600');
 $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 include_once($root . '/php-app/autoLoad.php');
 
@@ -13,5 +14,10 @@ if (!isset($_POST) || empty($_POST)) {
 }
 
 Contexte::init();
-ServletManager::request();
+if (isset($_POST['servlet']) || isset($_GET['servlet'])) {
+    ServletManager::request();
+} elseif (isset($_GET['REQUEST_API'])) {
+    ApiManager::request();
+}
+
 ?>
